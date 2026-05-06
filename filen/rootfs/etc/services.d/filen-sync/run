@@ -1,0 +1,38 @@
+#!/usr/bin/with-contenv bashio
+# shellcheck shell=bash
+
+# shellcheck disable=SC1091
+source /etc/filen/common
+
+# Home Assistant Backup Sync
+if [ "$(bashio::config.false "sync.enabled")" ]; then
+    bashio::log.info "Sync not enabled. Skipping."
+    exit 0
+fi
+
+bashio::log.info "
+==================================
+=== Home Assistant Backup Sync ===
+==================================
+"
+
+mode="$(bashio::config "sync.mode")"
+cloud_path="$(bashio::config "sync.cloud")"
+local_path="$(bashio::config "sync.local")"
+
+pair="$local_path:$mode:$cloud_path"
+
+bashio::log.info "
+Mode: $mode
+Local Path: $local_path
+Cloud_PATH: $cloud_path
+Pair: $pair
+"
+
+# Create the cloud directory if it doesn't exist
+bashio::log.info "Creating cloud dir."
+filen -q mkdir "$cloud_path" || bashio::log.warning "Failed to create cloud directory, it may already exist."
+
+# Start syncing
+bashio::log.info "Syncing directories."
+filen -q -v sync "$pair" --continuous

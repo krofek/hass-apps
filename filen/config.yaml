@@ -1,0 +1,32 @@
+---
+name: Filen.io Storage
+version: dev
+slug: filen
+description: Filen.io Storage for Home Assistant App
+init: false
+arch:
+  - aarch64
+  - amd64
+url: https://github.com/krofek/hass-apps/tree/main/filen
+ports:
+  80/tcp: 80
+map:
+  - share:rw
+  - backup:rw
+options:
+  email: null
+  password: null
+  sync:
+    enabled: true
+    mode: localToCloud
+    local: /backup
+    cloud: /backup/home-assistant
+schema:
+  email: email
+  password: password
+  sync:
+    enabled: bool
+    mode: list(localToCloud|cloudToLocal|twoWay|cloudBackup)
+    local: str
+    cloud: str
+image: ghcr.io/krofek/hass-apps-filen

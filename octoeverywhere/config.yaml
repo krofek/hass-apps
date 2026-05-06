@@ -1,0 +1,31 @@
+---
+name: OctoEverywhere
+version: dev
+slug: octoeverywhere
+description: OctoEverywhere integration for Home Assistant
+init: false
+arch:
+  - aarch64
+  - amd64
+url: https://github.com/krofek/hass-apps/tree/main/octoeverywhere
+map:
+  - share:rw
+options:
+  printers:
+    - companion_mode: elegoo
+      printer_ip: 192.168.0.173
+      bambu_serial_number: BAMBU_SERIAL_NUMBER_HERE
+      bambu_access_code: BAMBU_ACCESS_CODE_HERE
+      moonraker_port: 7125
+      moonraker_api_key: API_KEY_HERE
+      webserver_port: 80
+schema:
+  printers:
+    - companion_mode: "list(bambu|elegoo|klipper)"
+      printer_ip: str
+      bambu_serial_number: str
+      bambu_access_code: str
+      moonraker_port: int
+      moonraker_api_key: str
+      webserver_port: int
+image: ghcr.io/krofek/hass-apps-octoeverywhere

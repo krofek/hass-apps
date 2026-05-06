@@ -1,0 +1,31 @@
+---
+configuration:
+  email:
+    name: Email
+    description: The email for your Filen account
+  password:
+    name: Password
+    description: The password for your Filen account
+  sync:
+    name: Sync
+    description: Sync settings for your Filen account
+    fields:
+      enabled:
+        name: Enabled
+        description: Enable or disable syncing
+      mode:
+        name: Sync Mode
+        description: The sync mode to use for syncing files
+        selector:
+          select:
+            option_labels:
+              localToCloud: "Local to Cloud"
+              cloudToLocal: "Cloud to Local"
+              twoWay: "Two Way"
+              cloudBackup: "Cloud Backup"
+      local:
+        name: Local Path
+        description: The local path to sync files from
+      cloud:
+        name: Cloud Path
+        description: The cloud path to sync files to

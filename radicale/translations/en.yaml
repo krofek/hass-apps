@@ -1,0 +1,15 @@
+---
+configuration:
+  auth_users:
+    name: Users
+    description: List of users allowed to authenticate with Radicale. Each user should have a username and password.
+    item:
+      name: User
+      description: A user that can authenticate with Radicale.
+    fields:
+      username:
+        name: Username
+        description: The username for the user. This will be used to log in to Radicale.
+      password:
+        name: Password
+        description: The password for the user. This will be used to log in to Radicale.

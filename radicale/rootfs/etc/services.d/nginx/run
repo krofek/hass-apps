@@ -1,0 +1,20 @@
+#!/usr/bin/env bashio
+
+# Generate Ingress configuration
+bashio::var.json \
+    interface "$(bashio::addon.ip_address)" \
+    port "^$(bashio::addon.ingress_port)" \
+    | tempio \
+        -template /etc/nginx/templates/ingress.conf \
+        -out /etc/nginx/servers/ingress.conf
+
+# Wait for Radicale to become available
+bashio::net.wait_for 5232 localhost 300
+
+bashio::log.info "
+==============================
+======= Starting Nginx =======
+==============================
+"
+
+exec nginx

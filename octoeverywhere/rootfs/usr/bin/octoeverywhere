@@ -1,0 +1,42 @@
+#!/usr/bin/with-contenv bashio
+# shellcheck shell=bash
+
+bashio::log.info "
+==================================
+========= Octoeverywhere =========
+==================================
+"
+
+for printer in $(bashio::config "printers|keys"); do
+    companion_mode=$(bashio::config "printers[${printer}].companion_mode")
+    printer_ip=$(bashio::config "printers[${printer}].printer_ip")
+
+    export COMPANION_MODE="$companion_mode"
+    export PRINTER_IP="$printer_ip"
+
+    if [ "$companion_mode" == "bambu" ]; then
+        bambu_serial_number=$(bashio::config "printers[${printer}].bambu_serial_number")
+        bambu_access_code=$(bashio::config "printers[${printer}].bambu_access_code")
+
+        export SERIAL_NUMBER="$bambu_serial_number"
+        export ACCESS_CODE="$bambu_access_code"
+    elif [ "$companion_mode" == "klipper" ]; then
+        moonraker_port=$(bashio::config "printers[${printer}].moonraker_port")
+        moonraker_api_key=$(bashio::config "printers[${printer}].moonraker_api_key")
+        webserver_port=$(bashio::config "printers[${printer}].webserver_port")
+
+        export MOONRAKER_PORT="$moonraker_port"
+        export MOONRAKER_API_KEY="$moonraker_api_key"
+        export WEBSERVER_PORT="$webserver_port"
+    fi
+
+    export SERVICE_NAME="${printer}-${companion_mode}"
+    export DATA_DIR="/data/${SERVICE_NAME}"
+    export PRINTER_ID="${printer}"
+
+    [ ! -d "$DATA_DIR" ] && mkdir -p "$DATA_DIR"
+
+    /app/octoeverywhere-env/bin/python -m docker_octoeverywhere &
+done
+
+tail -f /dev/null

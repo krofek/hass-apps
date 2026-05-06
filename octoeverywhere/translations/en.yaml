@@ -1,0 +1,37 @@
+---
+configuration:
+  printers:
+    name: Printers
+    description: Configure your 3D printers for OctoEverywhere
+    item:
+      name: Printer
+      description: A printer that you want to connect to OctoEverywhere.
+    fields:
+      companion_mode:
+        name: Companion Mode
+        description: Configure the companion mode for the app
+        fields:
+          elegoo:
+            name: Elegoo
+          bambu:
+            name: Bambu Labs
+          klipper:
+            name: Klipper/Moonraker
+      printer_ip:
+        name: Printer IP
+        description: The local IP address of your 3D printer
+      bambu_serial_number:
+        name: Bambu Serial Number
+        description: "https://octoeverywhere.com/s/bambu-sn"
+      bambu_access_code:
+        name: Bambu Access Code
+        description: "https://octoeverywhere.com/s/access-code"
+      moonraker_port:
+        name: Moonraker Port
+        description: "The port number for Moonraker *default: 7125*"
+      moonraker_api_key:
+        name: Moonraker API Key
+        description: If your Moonraker needs API key auth, you can generate it in Mainsail or Fluidd and set it here.
+      webserver_port:
+        name: Webserver Port
+        description: "The port number for the Klipper webserver *default: 80*"

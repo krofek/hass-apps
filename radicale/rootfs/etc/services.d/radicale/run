@@ -1,0 +1,23 @@
+#!/usr/bin/env bashio
+
+source /etc/nginx/common.sh
+
+CREDENTIALS_PATH="/data/.htpasswd"
+CONFIG_PATH="/etc/radicale/config"
+
+export CREDENTIALS_PATH
+export CONFIG_PATH
+
+if bashio::config.has_value "auth_users"; then
+    create_access_file
+else
+    bashio::log.warning "No users defined, skipping .htpasswd creation."
+fi
+
+bashio::log.info "
+=============================
+===== Starting Radicale =====
+=============================
+"
+
+exec radicale

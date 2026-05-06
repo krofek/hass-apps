@@ -1,0 +1,25 @@
+#!/usr/bin/env bashio
+
+# Validate user configuration
+if ! bashio::config.has_value 'email'; then
+    bashio::exit.nok "You must set an email for the user"
+fi
+if ! bashio::config.has_value 'password'; then
+    bashio::exit.nok "You must set a password for the user"
+fi
+
+# Export Filen credentials as environment variables
+FILEN_EMAIL="$(bashio::config 'email')"
+FILEN_PASSWORD="$(bashio::config 'password')"
+# FILEN_2FA_CODE="$(bashio::config 'tfa_code')"
+
+# if [ ! "$FILEN_2FA_CODE" ]; then
+#     bashio::log.info "2FA code not set."
+# else
+#     bashio::log.info "Using 2FA code for Filen authentication."
+# fi
+
+export FILEN_EMAIL
+export FILEN_PASSWORD
+
+# [ "$FILEN_2FA_CODE" ] && export FILEN_2FA_CODE

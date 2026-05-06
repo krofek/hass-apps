@@ -1,0 +1,25 @@
+---
+name: Radicale
+version: dev
+slug: radicale
+description: "Home Assistant App: Radicale CalDav & CardDav"
+init: false
+arch:
+  - aarch64
+  - amd64
+url: https://github.com/krofek/hass-apps/tree/main/radicale
+ingress: true
+# ingress_entry: /.web/
+ports:
+  80/tcp: null
+  5232/tcp: 5232
+map:
+  - share:rw
+  - backup:ro
+options:
+  auth_users: []
+schema:
+  auth_users:
+    - username: str
+      password: password
+image: ghcr.io/krofek/hass-apps-radicale
