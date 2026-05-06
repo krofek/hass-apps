@@ -1,4 +1,5 @@
 # https://developers.home-assistant.io/docs/apps/repository#repository-configuration
-name: Example Home Assistant app repository
-url: 'https://github.com/home-assistant/apps-example'
-maintainer: Awesome Maintainer <awesome@example.com>
+name: Home Assistant Apps
+description: A collection of Home Assistant Apps built by Krofek.
+url: "https://github.com/krofek/hass-apps"
+maintainer: Krofek <3041788+krofek@users.noreply.github.com>
