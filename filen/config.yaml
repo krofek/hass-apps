@@ -1,6 +1,6 @@
 ---
 name: Filen.io Storage
-version: dev
+version: 0.0.1
 slug: filen
 description: Filen.io Storage for Home Assistant App
 init: false

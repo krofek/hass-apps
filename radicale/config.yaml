@@ -1,6 +1,6 @@
 ---
 name: Radicale
-version: dev
+version: 0.0.1
 slug: radicale
 description: "Home Assistant App: Radicale CalDav & CardDav"
 init: false

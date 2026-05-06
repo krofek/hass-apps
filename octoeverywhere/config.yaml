@@ -1,6 +1,6 @@
 ---
 name: OctoEverywhere
-version: dev
+version: 0.0.1
 slug: octoeverywhere
 description: OctoEverywhere integration for Home Assistant
 init: false
